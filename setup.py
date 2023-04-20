@@ -12,12 +12,12 @@ setup(
     long_description_content_type='text/markdown',
     
     # Author
-    author='Aleksander',
+    author='ImAlek (splayzdk)',
     author_email='alek@imalek.me',
     
     # Package
-    package_dir={'': 'src'},
-    packages=find_packages(where='src'),
+    package_dir={'': 'app'},
+    packages=find_packages(where='app'),
     url='https://github.com/SpLayzDK/StyledLogger/',
 
     # License
@@ -31,7 +31,8 @@ setup(
     # Dependencies
     python_requires='>=3.7',
     install_requires=[
-        'colorama',
+        'colorama>=0.4.6',
+        'arrow>=1.2.3'
     ]
 
 )
