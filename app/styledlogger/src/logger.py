@@ -1,10 +1,9 @@
 from colorama import (
     just_fix_windows_console,
-    Fore,
-    Style,
 )
 
 from .classes.styleconfig import StyleConfig
+from .classes.printtypes import Debug, Info, Warn, Error, Fatal
 
 just_fix_windows_console()
 
@@ -21,9 +20,9 @@ class Logger:
     def __init__(self, name: str, *, file: str = None, level: int = 0) -> None:
         self.name = name
         self.level = level
-        self.ignore = False
+        self.mute = False
         self.file = file
-        self.style_config = 
+        self.style_config = StyleConfig()  # <-- continue here
 
     def set_level(self, level):
         """
@@ -33,33 +32,46 @@ class Logger:
 
     def debug(self, message):
         """
-        Log a debug message
+        Log an info message
         """
-        if self.level >= 1:
-            self._log(message, Fore.CYAN)
+        if self.level <= 0:
+            self._log(self.style_config.style_text(self.name, Debug, message))
 
     def info(self, message):
         """
         Log an info message
         """
-        if self.level >= 2:
-            self._log(message, Fore.GREEN)
+        if self.level <= 1:
+            self._log(self.style_config.style_text(self.name, Info, message))
 
     def warn(self, message):
         """
-        Log a warning message
+        Log an info message
         """
-        if self.level >= 3:
-            self._log(message, Fore.YELLOW)
+        if self.level <= 2:
+            self._log(self.style_config.style_text(self.name, Warn, message))
 
     def error(self, message):
         """
-        Log an error message
+        Log an info message
         """
-        if self.level >= 4:
-            self._log(message, Fore.RED)
+        if self.level <= 3:
+            self._log(self.style_config.style_text(self.name, Error, message))
+    
+    def fatal(self, message):
+        """
+        Log an info message
+        """
+        if self.level <= 4:
+            self._log(self.style_config.style_text(self.name, Fatal, message))
 
-    def _log(self, message, color):
-        if self.ignore:
+    def _log(self, message):
+        if self.mute:
             return
-        print(f"{color}{self.name}{Style.RESET_ALL}: {message}")
+        print(message)
+
+    def set_style(self, style_config: StyleConfig):
+        """
+        Change the style config of the logger.
+        """
+        self.style_config = style_config
