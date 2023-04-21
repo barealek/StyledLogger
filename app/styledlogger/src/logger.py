@@ -75,3 +75,15 @@ class Logger:
         Change the style config of the logger.
         """
         self.style_config = style_config
+
+    def mute(self):
+        """
+        Mute the logger
+        """
+        self.mute = True
+
+    def unmute(self):
+        """
+        Unmute the logger
+        """
+        self.mute = False
