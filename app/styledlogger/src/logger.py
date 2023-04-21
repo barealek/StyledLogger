@@ -20,7 +20,7 @@ class Logger:
     def __init__(self, name: str, *, file: str = None, level: int = 0) -> None:
         self.name = name
         self.level = level
-        self.mute = False
+        self.is_muted = False
         self.file = file
         self.style_config = StyleConfig()  # <-- continue here
 
@@ -66,7 +66,7 @@ class Logger:
             self._log(self.style_config.style_text(self.name, Fatal, message))
 
     def _log(self, message):
-        if self.mute:
+        if self.is_muted:
             return
         print(message)
 
@@ -80,10 +80,10 @@ class Logger:
         """
         Mute the logger
         """
-        self.mute = True
+        self.is_muted = True
 
     def unmute(self):
         """
         Unmute the logger
         """
-        self.mute = False
+        self.is_muted = False
