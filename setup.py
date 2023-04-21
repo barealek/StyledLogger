@@ -6,7 +6,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 setup(
     # Basics
     name='styledlogger',
-    version='0.1 PRE',
+    version='1.0',
     description='A simple, styled logging library.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -16,8 +16,8 @@ setup(
     author_email='alek@imalek.me',
     
     # Package
-    package_dir={'': 'styledlogger'},
-    packages=find_packages(where='src'),
+    package_dir={'': 'app'},
+    packages=find_packages(where='app'),
     url='https://github.com/SpLayzDK/StyledLogger/',
 
     # License
