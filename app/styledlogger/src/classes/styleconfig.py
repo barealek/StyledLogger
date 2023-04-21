@@ -18,9 +18,10 @@ class StyleConfig:
 
     def __init__(
         self,
-        text_format: str = "%time% %type% - %msg%",
+        text_format: str = "%time% %name% %type% - %msg%",
         time_format: str = "h:mm:ss",
         time_color: str = "dark_gray",
+        name_color: str = "reset",
         text_color: str | None = None,
         debug_color: str = "yellow",
         info_color: str = "green",
@@ -31,6 +32,7 @@ class StyleConfig:
         self.text_format = text_format
         self.time_format = time_format
         self.time_color = self._validate_color(time_color)
+        self.name_color = self._validate_color(name_color)
         self.text_color = self._validate_color(text_color) if text_color else Colors.RESET
 
         self.debug_color = self._validate_color(debug_color)
@@ -76,10 +78,10 @@ class StyleConfig:
         format_blueprint = self.text_format
 
         replacemap = {
-            "%name%": logger_name,
+            "%name%": self.name_color + logger_name + self.reset,
             "%time%": self.time_color + now().format(self.time_format) + self.reset,
             "%type%": type_color + str(print_type.display) + self.reset,
-            "%msg%": self.text_color + text,
+            "%msg%": self.text_color + text + self.reset,
         }
 
         for k, v in replacemap.items():
