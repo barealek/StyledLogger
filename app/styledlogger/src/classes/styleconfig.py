@@ -18,7 +18,7 @@ class StyleConfig:
 
     def __init__(
         self,
-        text_format: str = "%time% %name% %type% - %msg%",
+        text_format: str = "%time% :: %type% @ %name% - %msg%",
         time_format: str = "h:mm:ss",
         time_color: str = "dark_gray",
         name_color: str = "reset",
