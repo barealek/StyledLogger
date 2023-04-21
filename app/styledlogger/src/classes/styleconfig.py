@@ -19,14 +19,14 @@ class StyleConfig:
     def __init__(
         self,
         text_format: str = "%time% %type% - %msg%",
-        time_format: str = "hh:mm:ss",
-        time_color: str = "lightblack_ex",
+        time_format: str = "h:mm:ss",
+        time_color: str = "dark_gray",
         text_color: str | None = None,
         debug_color: str = "yellow",
         info_color: str = "green",
-        warn_color: str = "magenta",
-        error_color: str = "lightred_ex",
-        fatal_color: str = "red",
+        warn_color: str = "brown",
+        error_color: str = "red",
+        fatal_color: str = "purple",
     ) -> None:
         self.text_format = text_format
         self.time_format = time_format
