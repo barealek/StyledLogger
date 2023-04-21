@@ -17,12 +17,12 @@ class Logger:
     :param level: The log level
     """
 
-    def __init__(self, name: str, *, file: str = None, level: int = 0) -> None:
+    def __init__(self, name: str, *, file: str = None, level: int = 1) -> None:
         self.name = name
         self.level = level
         self.is_muted = False
-        self.file = file
-        self.style_config = StyleConfig()  # <-- continue here
+        self.file = file # TODO: Implement file logging
+        self.style_config = StyleConfig() 
 
     def set_level(self, level):
         """
