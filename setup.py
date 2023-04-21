@@ -16,8 +16,8 @@ setup(
     author_email='alek@imalek.me',
     
     # Package
-    package_dir={'': 'app'},
-    packages=find_packages(where='app'),
+    package_dir={'': 'styledlogger'},
+    packages=find_packages(where='src'),
     url='https://github.com/SpLayzDK/StyledLogger/',
 
     # License
