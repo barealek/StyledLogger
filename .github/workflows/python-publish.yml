@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
   
-    environment: Main Environment
+    environment: CI
     
     runs-on: ubuntu-latest
 
@@ -27,4 +27,4 @@ jobs:
         user: ${{ secrets.USER }}
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/* -u $user -p $passw
+        twine upload dist/* -u ${user} -p ${passw}
