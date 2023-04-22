@@ -22,6 +22,8 @@ Simple example using a logger:
 
 >>> from styledlogger import StyleConfig
 >>> logger.set_style(StyleConfig( text_format="(%time%) | %type% - %msg%", time_format='DD/MM/YYYY hh:mm' )) # Change the text format and time format in the logs
-(22/04/2023 10:01) | WARN - CPU usage exceeding 90%```
+(22/04/2023 10:01) | WARN - CPU usage exceeding 90%
+```
 
-GitHub: https://github.com/SpLayzDK/StyledLogger
+Check out the GitHub: https://github.com/SpLayzDK/StyledLogger
+Contact me at mail: alek@imalek.me
