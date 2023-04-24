@@ -2,9 +2,9 @@
 
 ### A simple - yet beautiful logging library for Python 🐍 > 3.7
 
-To use, simply do `pip install styledlogger`
+To use, simply install via `pip install styledlogger`
 
-Then you can import `StyledLogger` from the package and initialize it.
+Then you can import the `StyledLogger class` from the `styledlogger` package, and initialize it.
 
 Simple example using a logger:
 
@@ -21,7 +21,9 @@ Simple example using a logger:
 10:15:14 :: ERRO @ Main - Could not fetch url 'https://example.com'
 
 >>> from styledlogger import StyleConfig
+
 >>> logger.set_style(StyleConfig( text_format="(%time%) | %type% - %msg%", time_format='DD/MM/YYYY hh:mm' )) # Change the text format and time format in the logs. Placeholders you can use are: %name%, %time%, %type% and %msg%.
+
 >>> logger.warn("CPU usage exceeding 90%")
 (22/04/2023 10:01) | WARN - CPU usage exceeding 90%
 ```
