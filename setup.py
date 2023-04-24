@@ -10,11 +10,11 @@ setup(
     description='A simple, styled logging library.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    
+
     # Author
     author='ImAlek (splayzdk)',
     author_email='alek@imalek.me',
-    
+
     # Package
     packages=find_packages(),
     url='https://github.com/SpLayzDK/StyledLogger/',
