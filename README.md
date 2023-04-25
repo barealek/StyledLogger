@@ -12,7 +12,7 @@ Simple example using a logger:
 >>> from styledlogger import StyledLogger
 
 >>> logger = StyledLogger(name="Main") # Initialize a logger named "Main"
->>> logger.set_level(0) # Enable debug - default level is 1, which means every log type except debug
+>>> logger.set_level(0) # Enable debug - default level is 1, which means every log type except debug. Setting the level to 0 enables the debug logs.
 
 >>> logger.debug("This is just a test print")
 9:55:30 :: DEBU @ Main - This is just a test print
