@@ -6,7 +6,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 setup(
     # Basics
     name='styledlogger',
-    version='0.0.4',
+    version='0.0.5',
     description='A simple, styled logging library.',
     long_description=long_description,
     long_description_content_type='text/markdown',
