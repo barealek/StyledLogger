@@ -69,8 +69,7 @@ class Logger:
         """
         Log a system message
         """
-        if self.level <= 5:
-            self._log(self.style_config.style_text(self.name, System, message))
+        self._log(self.style_config.style_text(self.name, System, message))
 
     def _log(self, message):
         if self.is_muted:
