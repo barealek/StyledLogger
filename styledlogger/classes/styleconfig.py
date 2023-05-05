@@ -1,7 +1,7 @@
 from .printcolors import Colors
 from arrow import now
 
-from .printtypes import Debug, Info, Warn, Error, Fatal, PrintType
+from .printtypes import Debug, Info, Warn, Error, Fatal, System, PrintType
 
 
 class StyleConfig:
@@ -28,6 +28,7 @@ class StyleConfig:
         warn_color: str = "brown",
         error_color: str = "red",
         fatal_color: str = "purple",
+        system_color: str = "cyan",
     ) -> None:
         self.text_format = text_format
         self.time_format = time_format
@@ -40,6 +41,7 @@ class StyleConfig:
         self.warn_color = self._validate_color(warn_color)
         self.error_color = self._validate_color(error_color)
         self.fatal_color = self._validate_color(fatal_color)
+        self.system_color = self._validate_color(system_color)
 
         self.reset = Colors.RESET
 
@@ -74,6 +76,8 @@ class StyleConfig:
             type_color = self.error_color
         elif print_type == Fatal:
             type_color = self.fatal_color
+        elif print_type == System:
+            type_color = self.system_color
 
         format_blueprint = self.text_format
 
