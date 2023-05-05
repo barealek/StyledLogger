@@ -16,3 +16,6 @@ class Error(PrintType):
 
 class Fatal(PrintType):
     display = "FATL"
+
+class System(PrintType):
+    display = "SYST"
