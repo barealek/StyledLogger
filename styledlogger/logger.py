@@ -3,7 +3,8 @@ from colorama import (
 )
 
 from .classes.styleconfig import StyleConfig
-from .classes.printtypes import Debug, Info, Warn, Error, Fatal, System
+from .classes.printtypes import PrintType, \
+                                Debug, Info, Warn, Error, Fatal, System
 
 just_fix_windows_console()
 
@@ -13,7 +14,7 @@ class Logger:
     The main object for logging.
 
     :param name: The name of the logger
-    :param file: The file to log to. If None, log only to stdout.
+    :param file: The path of the file which logs will be written to
     :param level: The log level
     """
 
@@ -21,8 +22,8 @@ class Logger:
         self.name = name
         self.level = level
         self.is_muted = False
-        self.file = file # TODO: Implement file logging
         self.style_config = StyleConfig() 
+        self.file_path = file
 
     def set_level(self, level):
         """
@@ -35,46 +36,51 @@ class Logger:
         Log a debug message
         """
         if self.level <= 0:
-            self._log(self.style_config.style_text(self.name, Debug, message))
+            self._log(message, Debug)
 
     def info(self, message):
         """
         Log an info message
         """
         if self.level <= 1:
-            self._log(self.style_config.style_text(self.name, Info, message))
+            self._log(message, Info)
 
     def warn(self, message):
         """
         Log a warning message
         """
         if self.level <= 2:
-            self._log(self.style_config.style_text(self.name, Warn, message))
+            self._log(message, Warn)
 
     def error(self, message):
         """
         Log an error message
         """
         if self.level <= 3:
-            self._log(self.style_config.style_text(self.name, Error, message))
+            self._log(message, Error)
     
     def fatal(self, message):
         """
         Log a fatal message
         """
         if self.level <= 4:
-            self._log(self.style_config.style_text(self.name, Fatal, message))
+            self._log(message, Fatal)
 
     def system(self, message):
         """
         Log a system message
         """
-        self._log(self.style_config.style_text(self.name, System, message))
+        self._log(message, System)
 
-    def _log(self, message):
+    def _log(self, message, print_type: PrintType):
         if self.is_muted:
             return
-        print(message)
+        
+        if self.file_path:
+            with open(self.file_path, "a+", encoding='utf-8') as file:
+                file.write(message + "\n")
+
+        print(self.style_config.style_text(self.name, print_type, message))
 
     def set_style(self, style_config: StyleConfig):
         """
