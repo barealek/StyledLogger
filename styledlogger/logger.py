@@ -4,7 +4,7 @@ from colorama import (
 
 from .classes.styleconfig import StyleConfig
 from .classes.printtypes import PrintType, \
-                                Debug, Info, Warn, Error, Fatal, System
+    Debug, Info, Warn, Error, Fatal, System
 
 just_fix_windows_console()
 
@@ -22,7 +22,7 @@ class Logger:
         self.name = name
         self.level = level
         self.is_muted = False
-        self.style_config = StyleConfig() 
+        self.style_config = StyleConfig()
         self.file_path = file
 
     def set_level(self, level):
@@ -58,7 +58,7 @@ class Logger:
         """
         if self.level <= 3:
             self._log(message, Error)
-    
+
     def fatal(self, message):
         """
         Log a fatal message
@@ -75,10 +75,11 @@ class Logger:
     def _log(self, message, print_type: PrintType):
         if self.is_muted:
             return
-        
+
         if self.file_path:
             with open(self.file_path, "a+", encoding='utf-8') as file:
-                file.write(self.style_config.style_text_uncolored(self.name, print_type, message) + "\n")
+                file.write(self.style_config.style_text_uncolored(
+                    self.name, print_type, message) + "\n")
 
         print(self.style_config.style_text(self.name, print_type, message))
 
