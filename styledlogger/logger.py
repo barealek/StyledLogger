@@ -78,7 +78,7 @@ class Logger:
         
         if self.file_path:
             with open(self.file_path, "a+", encoding='utf-8') as file:
-                file.write(message + "\n")
+                file.write(self.style_config.style_text_uncolored(self.name, print_type, message) + "\n")
 
         print(self.style_config.style_text(self.name, print_type, message))
 
