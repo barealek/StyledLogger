@@ -2,6 +2,12 @@ class PrintType:
     def __init__(self):
         self.display = None
 
+    def __hash__(self):
+        return hash((self.display))
+    
+    def __eq__(self, other):
+        return self.display == other.display
+
 class Debug(PrintType):
     display = "DEBU"
 
