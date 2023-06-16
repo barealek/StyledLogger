@@ -34,7 +34,8 @@ class StyleConfig:
         self.time_format = time_format
         self.time_color = self._validate_color(time_color)
         self.name_color = self._validate_color(name_color)
-        self.text_color = self._validate_color(text_color) if text_color else Colors.RESET
+        self.text_color = self._validate_color(
+            text_color) if text_color else Colors.RESET
 
         self.debug_color = self._validate_color(debug_color)
         self.info_color = self._validate_color(info_color)
