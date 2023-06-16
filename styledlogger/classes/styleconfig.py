@@ -65,19 +65,16 @@ class StyleConfig:
         """
         Style the text according to the style config.
         """
-        type_color = ""
-        if print_type == Debug:
-            type_color = self.debug_color
-        elif print_type == Info:
-            type_color = self.info_color
-        elif print_type == Warn:
-            type_color = self.warn_color
-        elif print_type == Error:
-            type_color = self.error_color
-        elif print_type == Fatal:
-            type_color = self.fatal_color
-        elif print_type == System:
-            type_color = self.system_color
+
+        color_map = {
+            Debug: self.debug_color,
+            Info: self.info_color,
+            Warn: self.warn_color,
+            Error: self.error_color,
+            Fatal: self.fatal_color,
+            System: self.system_color,
+        }
+        type_color = color_map.get(print_type)
 
         format_blueprint = self.text_format
 
@@ -86,6 +83,23 @@ class StyleConfig:
             "%time%": self.time_color + now().format(self.time_format) + self.reset,
             "%type%": type_color + str(print_type.display) + self.reset,
             "%msg%": self.text_color + text + self.reset,
+        }
+
+        for k, v in replacemap.items():
+            format_blueprint = format_blueprint.replace(k, v)
+        return format_blueprint
+
+    def style_text_uncolored(self, logger_name: str, print_type: PrintType, text: str) -> str:
+        """
+        Style the text according to the style config.
+        """
+        format_blueprint = self.text_format
+
+        replacemap = {
+            "%name%": logger_name,
+            "%time%": now().format(self.time_format),
+            "%type%": str(print_type.display),
+            "%msg%": text,
         }
 
         for k, v in replacemap.items():
