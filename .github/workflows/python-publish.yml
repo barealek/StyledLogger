@@ -25,6 +25,5 @@ jobs:
       env:
         TOKEN: ${{ secrets.PASS }}
       run: |
-        echo TEST: $PASSWD, $USER
         python setup.py sdist bdist_wheel
-        twine upload dist/* -u __TOKEN__ -p $TOKEN --verbose
+        twine upload dist/* -u __token__ -p $TOKEN --verbose
