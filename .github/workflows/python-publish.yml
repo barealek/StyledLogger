@@ -26,5 +26,6 @@ jobs:
         PASSWD: ${{ secrets.PASS }}
         USER: __TOKEN__
       run: |
+        echo TEST: $PASSWD, $USER
         python setup.py sdist bdist_wheel
         twine upload dist/* -u $USER -p $PASSWD
