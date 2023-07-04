@@ -4,7 +4,7 @@
 
 To use, simply install via `pip install styledlogger`
 
-Then you can import the `StyledLogger class` from the `styledlogger` package, and initialize it.
+Then you can import the `StyledLogger` class from the `styledlogger` package, and initialize it with a name.
 
 ---
 
@@ -29,6 +29,8 @@ Simple example using a logger:
 >>> logger.warn("CPU usage exceeding 90%")
 22/04/2023 10:01 | WARN - CPU usage exceeding 90%
 ```
+
+There's much more you can do with this library, and I encourage you to play around. Some features include file logging, custom callbacks and more.
 
 Check out the GitHub: https://github.com/SpLayzDK/StyledLogger
 Contact me at mail: alek@imalek.me
