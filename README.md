@@ -32,5 +32,5 @@ Simple example using a logger:
 
 There's much more you can do with this library, and I encourage you to play around. Some features include file logging, custom callbacks and more.
 
-Check out the GitHub: https://github.com/SpLayzDK/StyledLogger
+Check out the GitHub: https://github.com/BareAlek/StyledLogger
 Contact me at mail: alek@imalek.me
