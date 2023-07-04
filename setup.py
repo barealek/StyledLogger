@@ -2,11 +2,13 @@ from setuptools import setup, find_packages
 
 with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
+with open('VERSION-BUMP-ME', 'r', encoding='utf-8') as f:
+    version = f.read()
 
 setup(
     # Basics
     name='styledlogger',
-    version='0.1.0',
+    version=version,
     description='A simple, styled logging library.',
     long_description=long_description,
     long_description_content_type='text/markdown',
