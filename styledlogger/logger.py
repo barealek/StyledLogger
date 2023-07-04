@@ -3,8 +3,8 @@ from colorama import (
 )
 
 from .classes.styleconfig import StyleConfig
-from .classes.printtypes import PrintType, \
-    Debug, Info, Warn, Error, Fatal, System
+from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, System
+from .classes.callback import Callback
 
 just_fix_windows_console()
 
@@ -24,12 +24,31 @@ class Logger:
         self.is_muted = False
         self.style_config = StyleConfig()
         self.file_path = file
+        self.callbacks = []
 
     def set_level(self, level):
         """
         Set the log level. 0 = debug, 1 = info, 2 = warn, 3 = error, 4 = fatal. All prints lower than the level will be ignored.
         """
         self.level = level
+
+    def add_callback(self, name: str, activation_level, callback: callable):
+        """
+        Add a callback to the logger. The callback will be called with the message as the first argument.
+        """
+        self.callbacks.append(
+            Callback(name=name, activation_level=activation_level, callback=callback)
+        )
+    
+    def remove_callback(self, name: str):
+        """
+        Remove a callback from the logger.
+        """
+        for callback in self.callbacks:
+            if callback.name == name:
+                self.callbacks.remove(callback)
+                return True
+        return False
 
     def debug(self, message):
         """
@@ -73,13 +92,22 @@ class Logger:
         self._log(message, System)
 
     def _log(self, message, print_type: PrintType):
+
+        for callback in self.callbacks:
+            if callback.activation_level <= print_type.level:
+                callback.run_callback(level=print_type.level, message=message)
+
         if self.is_muted:
             return
 
         if self.file_path:
-            with open(self.file_path, "a+", encoding='utf-8') as file:
-                file.write(self.style_config.style_text_uncolored(
-                    self.name, print_type, message) + "\n")
+            with open(self.file_path, "a+", encoding="utf-8") as file:
+                file.write(
+                    self.style_config.style_text_uncolored(
+                        self.name, print_type, message
+                    )
+                    + "\n"
+                )
 
         print(self.style_config.style_text(self.name, print_type, message))
 
