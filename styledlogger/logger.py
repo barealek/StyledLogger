@@ -41,6 +41,11 @@ class Logger:
 
         :param name: The name of the callback
         :param level: The level which the callback will be activated on. Higher levels than the specified level will be activated as well.
+
+        The decorated function should take these parameters:
+        :param name: The name of the logger which called the callback
+        :param level: The level which called the callback
+        :param message: The message which the logger was called with
         """
 
         def decorator_function(original_func):
