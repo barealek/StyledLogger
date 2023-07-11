@@ -1,3 +1,5 @@
+from .callbackctx import CallbackContext
+
 class Callback:
     """
     A callback that can be added to a logger. The callback will be called with the logger name as the first argument and message as the second argument.
@@ -12,13 +14,13 @@ class Callback:
     The callback function. This will be called with the logger name as the first argument, the level as the second and message as the third argument.
     """
 
-    def __init__(self, name: str, activation_levels: tuple, callback: callable):
+    def __init__(self, name: str, activation_levels: int | tuple, callback: callable):
         self.name = name
         self.activation_levels = activation_levels
         self.callback = callback
 
     def run_callback(self, level, message):
-        self.callback(self.name, level, message)
+        self.callback(CallbackContext(self.name, level, message))
 
     def __repr__(self):
         return f"<Callback name={self.name} activation_levels={self.activation_levels} callback={self.callback}>"
