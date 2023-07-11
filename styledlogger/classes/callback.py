@@ -12,16 +12,16 @@ class Callback:
     The callback function. This will be called with the logger name as the first argument, the level as the second and message as the third argument.
     """
 
-    def __init__(self, name: str, activation_level: int, callback: callable):
+    def __init__(self, name: str, activation_levels: tuple, callback: callable):
         self.name = name
-        self.activation_level = activation_level
+        self.activation_levels = activation_levels
         self.callback = callback
 
     def run_callback(self, level, message):
         self.callback(self.name, level, message)
 
     def __repr__(self):
-        return f"<Callback name={self.name} activation_level={self.activation_level} callback={self.callback}>"
+        return f"<Callback name={self.name} activation_levels={self.activation_levels} callback={self.callback}>"
 
     def __str__(self):
         return self.__repr__()
