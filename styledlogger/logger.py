@@ -2,9 +2,11 @@ from colorama import (
     just_fix_windows_console,
 )
 
+import functools
+
 from .classes.styleconfig import StyleConfig
 from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, System
-from .classes.callback import Callback
+from .classes.callback import Callback as LoggerCallback
 
 just_fix_windows_console()
 
@@ -32,14 +34,22 @@ class Logger:
         """
         self.level = level
 
-    def add_callback(self, name: str, activation_level, callback: callable):
+    # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
+    def callback(self, name: str, level: int =1):
         """
-        Add a callback to the logger. The callback will be called with the message as the first argument.
+        Decorator to add a callback to the logger.
+        
+        :param name: The name of the callback
+        :param level: The level which the callback will be activated on. Higher levels than the specified level will be activated as well.
         """
-        self.callbacks.append(
-            Callback(name=name, activation_level=activation_level, callback=callback)
-        )
-    
+        def decorator_function(original_func):
+            self.callbacks.append(LoggerCallback(name, level, original_func))
+            return original_func
+        return decorator_function
+        
+
+
+
     def remove_callback(self, name: str):
         """
         Remove a callback from the logger.
