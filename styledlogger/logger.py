@@ -26,14 +26,14 @@ class Logger:
         self.file_path = file
         self.callbacks = []
 
-    def set_level(self, level):
+    def set_level(self, level: int):
         """
         Set the log level. 0 = debug, 1 = info, 2 = warn, 3 = error, 4 = fatal. All prints lower than the level will be ignored.
         """
         self.level = level
 
     # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
-    def callback(self, name: str, level: int = 1):
+    def callback(self, name: str, levels: tuple[int, ...]):
         """
         Decorator to add a callback to the logger.
 
@@ -47,7 +47,7 @@ class Logger:
         """
 
         def decorator_function(original_func):
-            self.callbacks.append(LoggerCallback(name, level, original_func))
+            self.callbacks.append(LoggerCallback(name, levels, original_func))
             return original_func
 
         return decorator_function
@@ -66,6 +66,7 @@ class Logger:
         """
         Log a debug message
         """
+        self._process_callbacks(message, Debug)
         if self.level <= 0:
             self._log(message, Debug)
 
@@ -73,6 +74,7 @@ class Logger:
         """
         Log an info message
         """
+        self._process_callbacks(message, Info)
         if self.level <= 1:
             self._log(message, Info)
 
@@ -80,6 +82,7 @@ class Logger:
         """
         Log a warning message
         """
+        self._process_callbacks(message, Warn)
         if self.level <= 2:
             self._log(message, Warn)
 
@@ -87,6 +90,7 @@ class Logger:
         """
         Log an error message
         """
+        self._process_callbacks(message, Error)
         if self.level <= 3:
             self._log(message, Error)
 
@@ -94,6 +98,7 @@ class Logger:
         """
         Log a fatal message
         """
+        self._process_callbacks(message, Fatal)
         if self.level <= 4:
             self._log(message, Fatal)
 
@@ -101,15 +106,15 @@ class Logger:
         """
         Log a system message
         """
+        self._process_callbacks(message, System)
         self._log(message, System)
 
-    def _process_callbacks(self, print_type, message):
+    def _process_callbacks(self, message, print_type):
         for callback in self.callbacks:
-            if callback.activation_level <= print_type.level:
+            if print_type.level in callback.activation_levels:
                 callback.run_callback(level=print_type.level, message=message)
 
     def _log(self, message, print_type: PrintType):
-        self._process_callbacks(print_type, message)
 
         if self.is_muted:
             return
