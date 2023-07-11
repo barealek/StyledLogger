@@ -35,20 +35,24 @@ class Logger:
         self.level = level
 
     # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
-    def callback(self, name: str, level: int =1):
+    def callback(self, name: str, level: int = 1):
         """
         Decorator to add a callback to the logger.
-        
+
         :param name: The name of the callback
         :param level: The level which the callback will be activated on. Higher levels than the specified level will be activated as well.
+
+        The decorated function should take these parameters:
+        :param name: The name of the logger which called the callback
+        :param level: The level which called the callback
+        :param message: The message which the logger was called with
         """
+
         def decorator_function(original_func):
             self.callbacks.append(LoggerCallback(name, level, original_func))
             return original_func
+
         return decorator_function
-        
-
-
 
     def remove_callback(self, name: str):
         """
@@ -101,11 +105,13 @@ class Logger:
         """
         self._log(message, System)
 
-    def _log(self, message, print_type: PrintType):
-
+    def _process_callbacks(self, print_type, message):
         for callback in self.callbacks:
             if callback.activation_level <= print_type.level:
                 callback.run_callback(level=print_type.level, message=message)
+
+    def _log(self, message, print_type: PrintType):
+        self._process_callbacks(print_type, message)
 
         if self.is_muted:
             return
