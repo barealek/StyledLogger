@@ -106,7 +106,6 @@ class Logger:
                 callback.run_callback(level=print_type.level, message=message)
 
     def _log(self, message, print_type: PrintType):
-
         self._process_callbacks(print_type, message)
 
         if self.is_muted:
