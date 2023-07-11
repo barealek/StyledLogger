@@ -33,17 +33,18 @@ class Logger:
         self.level = level
 
     # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
-    def callback(self, name: str, levels: tuple[int, ...]):
+    def callback(self, name: str, levels: int | tuple[int, ...]):
         """
         Decorator to add a callback to the logger.
 
         :param name: The name of the callback
-        :param level: The level which the callback will be activated on. Higher levels than the specified level will be activated as well.
+        :param levels: The levels which the callback will be called upon.
 
-        The decorated function should take these parameters:
-        :param name: The name of the logger which called the callback
-        :param level: The level which called the callback
-        :param message: The message which the logger was called with
+        The decorated function will receive an instance of `styledlogger.CallbackContext`,
+        with the following attributes:
+        :param name: The name of the logger which activated the callback.
+        :param level: The log level which activated the callback.
+        :param message: The content of the log message which activated the callback.
         """
 
         def decorator_function(original_func):
@@ -111,8 +112,13 @@ class Logger:
 
     def _process_callbacks(self, message, print_type):
         for callback in self.callbacks:
-            if print_type.level in callback.activation_levels:
-                callback.run_callback(level=print_type.level, message=message)
+            if isinstance(callback.activation_levels, int):
+                if print_type.level == callback.activation_levels:
+                    callback.run_callback(level=print_type.level, message=message)
+                    return
+            if isinstance(callback.activation_levels, tuple):
+                if print_type.level in callback.activation_levels:
+                    callback.run_callback(level=print_type.level, message=message)
 
     def _log(self, message, print_type: PrintType):
 
