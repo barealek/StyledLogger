@@ -12,22 +12,19 @@ Simple example using a logger:
 
 ```py
 >>> from styledlogger import StyledLogger
+>>> logger = StyledLogger(name="Main")
 
->>> logger = StyledLogger(name="Main") # Initialize a logger named "Main"
->>> logger.set_level(0) # Enable debug - default level is 1, which means every log type except debug. Setting the level to 0 enables the debug logs.
+>>> logger.info("Good Morning!")
+8:57:41 :: INFO @ Main - Good Morning!
 
->>> logger.debug("This is just a test print")
-10:13:30 :: DEBU @ Main - This is just a test print
+>>> logger.warn("Python < 3.7 not supported")
+8:58:03 :: WARN @ Main - Python < 3.7 not supported
 
->>> logger.error("Could not fetch url 'https://example.com'")
-10:15:14 :: ERRO @ Main - Could not fetch url 'https://example.com'
+>>> logger.error("User database entries not found!")
+8:58:35 :: ERRO @ Main - User database entries not found!
 
->>> from styledlogger import StyleConfig
-
->>> logger.set_style(StyleConfig( text_format="%time% | %type% - %msg%", time_format='DD/MM/YYYY hh:mm' )) # Change the text format and time format in the logs. Placeholders you can use are: %name%, %time%, %type% and %msg%.
-
->>> logger.warn("CPU usage exceeding 90%")
-22/04/2023 10:01 | WARN - CPU usage exceeding 90%
+>>> logger.fatal("Lost connection to the API.")
+8:58:51 :: FATL @ Main - Lost connection to the API.
 ```
 
 There's much more you can do with this library, and I encourage you to play around. Some features include file logging, custom callbacks and more.
