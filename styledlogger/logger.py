@@ -2,8 +2,6 @@ from colorama import (
     just_fix_windows_console,
 )
 
-import functools
-
 from .classes.styleconfig import StyleConfig
 from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, System
 from .classes.callback import Callback as LoggerCallback
