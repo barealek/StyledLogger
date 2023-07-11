@@ -100,10 +100,14 @@ class Logger:
         """
         self._log(message, System)
 
-    def _log(self, message, print_type: PrintType):
+    def _process_callbacks(self, print_type, message):
         for callback in self.callbacks:
             if callback.activation_level <= print_type.level:
                 callback.run_callback(level=print_type.level, message=message)
+
+    def _log(self, message, print_type: PrintType):
+
+        self._process_callbacks(print_type, message)
 
         if self.is_muted:
             return
