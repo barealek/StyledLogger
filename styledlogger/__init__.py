@@ -1,6 +1,7 @@
 from .logger import Logger as StyledLogger
 
 from .classes.styleconfig import StyleConfig
+from .classes.callback import CallbackContext
 
 
 __AUTHOR__ = "ImAlek (https://github.com/barealek)"
