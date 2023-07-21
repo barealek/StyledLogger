@@ -1,11 +1,11 @@
 ##
-# This is a very simple
+# This is a very simple example containing some basic usage of the StyledLogger object.
 ##
 
 from styledlogger import StyledLogger
 import requests
 
-logger = StyledLogger("requests")
+logger = StyledLogger(name="requests")  # Initialize the logger with the name "requests"
 
 try:
     logger.info("Sending request to google.com...")

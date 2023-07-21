@@ -1,3 +1,8 @@
+##
+# An example showing one way of using StyledLogger with a discord.py bot.
+##
+
+
 from styledlogger import StyledLogger
 import discord
 
