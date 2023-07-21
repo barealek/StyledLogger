@@ -28,7 +28,9 @@ class Logger:
 
     def set_level(self, level: int):
         """
-        Set the log level. 0 = debug, 1 = info, 2 = warn, 3 = error, 4 = fatal. All prints lower than the level will be ignored.
+        Set the log level.
+
+        :param level: The new level.
         """
         self.level = level
 
