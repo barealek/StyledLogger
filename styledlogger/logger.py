@@ -33,7 +33,7 @@ class Logger:
 
     # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
     # noinspection PyIncorrectDocstring
-    def callback(self, name: str, levels: int | tuple [int, ...]):
+    def callback(self, name: str, levels: int | tuple[int, ...]):
         """
         Decorator to add a callback to the logger.
 
