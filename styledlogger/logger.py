@@ -3,6 +3,7 @@ from .classes.styleconfig import StyleConfig
 from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, System
 from .classes.callback import Callback as LoggerCallback
 
+from typing import Type
 
 
 class Logger:
@@ -31,6 +32,7 @@ class Logger:
         self.level = level
 
     # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
+    # noinspection PyIncorrectDocstring
     def callback(self, name: str, levels: int | tuple [int, ...]):
         """
         Decorator to add a callback to the logger.
@@ -118,7 +120,7 @@ class Logger:
                 if print_type.level in callback.activation_levels:
                     callback.run_callback(level=print_type.level, message=message)
 
-    def _log(self, message, print_type: PrintType):
+    def _log(self, message, print_type: Type[PrintType]):
 
         if self.is_muted:
             return

@@ -3,6 +3,8 @@ from arrow import now
 
 from .printtypes import Debug, Info, Warn, Error, Fatal, System, PrintType
 
+from typing import Type
+
 
 class StyleConfig:
     """
@@ -72,7 +74,7 @@ class StyleConfig:
         """
         return vars(self)
 
-    def style_text(self, logger_name: str, print_type: PrintType, text: str) -> str:
+    def style_text(self, logger_name: str, print_type: Type[PrintType], text: str) -> str:
         """
         Style the text according to the style config.
         """
@@ -101,7 +103,7 @@ class StyleConfig:
         return format_blueprint
 
     def style_text_uncolored(
-        self, logger_name: str, print_type: PrintType, text: str
+        self, logger_name: str, print_type: Type[PrintType], text: str
     ) -> str:
         """
         Style the text according to the style config.
