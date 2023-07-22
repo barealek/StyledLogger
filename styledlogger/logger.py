@@ -18,11 +18,11 @@ class Logger:
     :param level: The log level
     """
 
-    def __init__(self, name: str, *, file: str = None, level: int = 1) -> None:
+    def __init__(self, name: str, *, file: str = None, level: int = 1, style_config: StyleConfig = None) -> None:
         self.name = name
         self.level = level
         self.is_muted = False
-        self.style_config = StyleConfig()
+        self.style_config = style_config or StyleConfig()
         self.file_path = file
         self.callbacks = []
 
