@@ -1,12 +1,8 @@
-from colorama import (
-    just_fix_windows_console,
-)
 
 from .classes.styleconfig import StyleConfig
 from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, System
 from .classes.callback import Callback as LoggerCallback
 
-just_fix_windows_console()
 
 
 class Logger:
@@ -35,7 +31,7 @@ class Logger:
         self.level = level
 
     # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
-    def callback(self, name: str, levels: int | tuple[int, ...]):
+    def callback(self, name: str, levels: int | tuple [int, ...]):
         """
         Decorator to add a callback to the logger.
 
