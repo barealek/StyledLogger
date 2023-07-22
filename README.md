@@ -27,7 +27,9 @@ Simple example using a logger:
 8:58:51 :: FATL @ Main - Lost connection to the API.
 ```
 
-There's much more you can do with this library, and I encourage you to play around. Some features include file logging, custom callbacks and more.
+There's more to this library, and I encourage to play around with it. You can check out the `examples` folder for some nice examples showing the features of the library.
+
+---
 
 Check out the GitHub: https://github.com/BareAlek/StyledLogger
 Contact me at mail: alek@imalek.me
