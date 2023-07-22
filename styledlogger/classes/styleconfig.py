@@ -8,11 +8,19 @@ class StyleConfig:
     """
     The style configuration for the logger.
 
-    :param time_format: The format of the time.
-    See https://arrow.readthedocs.io/en/latest/guide.html#format
+    :param text_format: The format of the log message.
+    :param time_format: The format of the time in the log message.
 
-    :param time_color: The color of the time. See https://pypi.org/project/colorama/
-    - usually just the name of the color.
+    :param time_color: The color of the time in the log message.
+    :param name_color: The color of the logger name in the log message.
+    :param text_color: The color of the log message.
+
+    :param debug_color: The color of the debug name text.
+    :param info_color: The color of the info name text.
+    :param warn_color: The color of the warn name text.
+    :param error_color: The color of the error name text.
+    :param fatal_color: The color of the fatal name text.
+    :param system_color: The color of the system name text.
 
     """
 
