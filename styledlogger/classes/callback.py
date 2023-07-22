@@ -1,5 +1,6 @@
 from .callbackctx import CallbackContext
 
+
 class Callback:
     """
     A callback that can be added to a logger. The callback will be called with the logger name as the first argument and message as the second argument.
