@@ -113,7 +113,8 @@ class Logger:
         Log a system message
         """
         self._process_callbacks(message, System)
-        self._log(message, System)
+        return self._log(message, System)
+        
 
     def _process_callbacks(self, message, print_type):
         for callback in self.callbacks:
