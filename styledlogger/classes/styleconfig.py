@@ -29,7 +29,7 @@ class StyleConfig:
     def __init__(
         self,
         *,
-        text_format: str = "%time% :: %type% @ %name% - %msg%",
+        text_format: str = "{time} :: {type} @ {name} - {text}",
         time_format: str = "h:mm:ss",
         time_color: str = "dark_gray",
         name_color: str = "reset",
@@ -92,10 +92,10 @@ class StyleConfig:
         format_blueprint = self.text_format
 
         replacemap = {
-            "%name%": self.name_color + logger_name + self.reset,
-            "%time%": self.time_color + now().format(self.time_format) + self.reset,
-            "%type%": type_color + str(print_type.display) + self.reset,
-            "%msg%": self.text_color + text + self.reset,
+            "{name}": self.name_color + logger_name + self.reset,
+            "{time}": self.time_color + now().format(self.time_format) + self.reset,
+            "{type}": type_color + str(print_type.display) + self.reset,
+            "{text}": self.text_color + text + self.reset,
         }
 
         for k, v in replacemap.items():
@@ -108,15 +108,12 @@ class StyleConfig:
         """
         Style the text according to the style config.
         """
-        format_blueprint = self.text_format
 
         replacemap = {
-            "%name%": logger_name,
-            "%time%": now().format(self.time_format),
-            "%type%": str(print_type.display),
-            "%msg%": text,
+            "{name}": logger_name,
+            "{time}": now().format(self.time_format),
+            "{type}": str(print_type.display),
+            "{text}": text,
         }
 
-        for k, v in replacemap.items():
-            format_blueprint = format_blueprint.replace(k, v)
-        return format_blueprint
+        return ' '.join([replacemap.get(_w, _w) for _w in self.text_format.split(' ')])
