@@ -89,7 +89,6 @@ class StyleConfig:
         }
         type_color = color_map.get(print_type)
 
-        format_blueprint = self.text_format
 
         replacemap = {
             "{name}": self.name_color + logger_name + self.reset,
@@ -98,9 +97,8 @@ class StyleConfig:
             "{text}": self.text_color + text + self.reset,
         }
 
-        for k, v in replacemap.items():
-            format_blueprint = format_blueprint.replace(k, v)
-        return format_blueprint
+        return ' '.join([replacemap.get(_w, _w) for _w in self.text_format.split(' ')])
+
 
     def style_text_uncolored(
         self, logger_name: str, print_type: Type[PrintType], text: str
@@ -116,4 +114,3 @@ class StyleConfig:
             "{text}": text,
         }
 
-        return ' '.join([replacemap.get(_w, _w) for _w in self.text_format.split(' ')])
