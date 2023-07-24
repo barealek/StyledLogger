@@ -131,13 +131,7 @@ class Logger:
             return False
 
         if self.file_path:
-            with open(self.file_path, "a+", encoding="utf-8") as file:
-                file.write(
-                    self.style_config.style_text_uncolored(
-                        self.name, print_type, message
-                    )
-                    + "\n"
-                )
+            self._write_to_file(message, print_type)
 
         print(self.style_config.style_text(self.name, print_type, message))
         return True
@@ -159,3 +153,12 @@ class Logger:
         Unmute the logger.
         """
         self.is_muted = False
+
+    def _write_to_file(self, message, print_type: Type[PrintType]):
+        with open(self.file_path, "a+", encoding="utf-8") as file:
+                file.write(
+                    self.style_config.style_text_uncolored(
+                        self.name, print_type, message
+                    )
+                    + "\n"
+                )
