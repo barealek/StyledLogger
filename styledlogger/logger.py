@@ -69,7 +69,8 @@ class Logger:
         """
         self._process_callbacks(message, Debug)
         if self.level <= 0:
-            self._log(message, Debug)
+            return self._log(message, Debug)
+        return False
 
     def info(self, message):
         """
@@ -77,7 +78,8 @@ class Logger:
         """
         self._process_callbacks(message, Info)
         if self.level <= 1:
-            self._log(message, Info)
+            return self._log(message, Info)
+        return False
 
     def warn(self, message):
         """
@@ -85,7 +87,8 @@ class Logger:
         """
         self._process_callbacks(message, Warn)
         if self.level <= 2:
-            self._log(message, Warn)
+            return self._log(message, Warn)
+        return False
 
     def error(self, message):
         """
@@ -93,7 +96,8 @@ class Logger:
         """
         self._process_callbacks(message, Error)
         if self.level <= 3:
-            self._log(message, Error)
+            return self._log(message, Error)
+        return False
 
     def fatal(self, message):
         """
@@ -101,7 +105,8 @@ class Logger:
         """
         self._process_callbacks(message, Fatal)
         if self.level <= 4:
-            self._log(message, Fatal)
+            return self._log(message, Fatal)
+        return False
 
     def system(self, message):
         """
@@ -123,7 +128,7 @@ class Logger:
     def _log(self, message, print_type: Type[PrintType]):
 
         if self.is_muted:
-            return
+            return False
 
         if self.file_path:
             with open(self.file_path, "a+", encoding="utf-8") as file:
@@ -135,6 +140,7 @@ class Logger:
                 )
 
         print(self.style_config.style_text(self.name, print_type, message))
+        return True
 
     def set_style(self, style_config: StyleConfig):
         """
