@@ -1,6 +1,6 @@
 # StyledLogger
 
-### A simple, yet beautiful logging library for Python 🐍 > 3.7
+### A simple, yet beautiful logging library for Python 🐍 >= 3.9
 
 To use, simply install via `pip install styledlogger`
 
