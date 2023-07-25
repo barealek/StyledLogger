@@ -3,7 +3,7 @@ from .classes.styleconfig import StyleConfig
 from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, System
 from .classes.callback import Callback as LoggerCallback
 
-from typing import Type
+from typing import Type, Union
 
 
 class Logger:
@@ -33,7 +33,7 @@ class Logger:
 
     # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
     # noinspection PyIncorrectDocstring
-    def callback(self, name: str, levels: int | tuple[int, ...]):
+    def callback(self, name: str, levels: Union[int, tuple[int, ...]]):
         """
         Decorator to add a callback to the logger.
 

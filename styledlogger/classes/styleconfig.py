@@ -3,7 +3,7 @@ from arrow import now
 
 from .printtypes import Debug, Info, Warn, Error, Fatal, System, PrintType
 
-from typing import Type
+from typing import Type, Union
 
 
 class StyleConfig:
@@ -33,7 +33,7 @@ class StyleConfig:
         time_format: str = "h:mm:ss",
         time_color: str = "dark_gray",
         name_color: str = "reset",
-        text_color: str | None = None,
+        text_color: Union[str, None] = None,
         debug_color: str = "yellow",
         info_color: str = "green",
         warn_color: str = "brown",

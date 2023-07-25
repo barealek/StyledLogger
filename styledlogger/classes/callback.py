@@ -1,5 +1,7 @@
 from .callbackctx import CallbackContext
 
+from typing import Union
+
 
 class Callback:
     """
@@ -15,7 +17,7 @@ class Callback:
     The callback function. This will be called with the logger name as the first argument, the level as the second and message as the third argument.
     """
 
-    def __init__(self, name: str, activation_levels: int | tuple, callback: callable):
+    def __init__(self, name: str, activation_levels: Union[int, tuple], callback: callable):
         self.name = name
         self.activation_levels = activation_levels
         self.callback = callback
