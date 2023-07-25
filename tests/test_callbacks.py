@@ -31,9 +31,9 @@ class TestCallbacks(unittest.TestCase):
         logger.system("TEST")
         self.assertEqual(num, 4)
 
-        self.assertEquals(len(logger.callbacks), 1)
-        self.assertEquals(logger.callbacks[0].name, "test_callback")
-        self.assertEquals(type(logger.callbacks[0]), Callback)
+        self.assertEqual(len(logger.callbacks), 1)
+        self.assertEqual(logger.callbacks[0].name, "test_callback")
+        self.assertEqual(type(logger.callbacks[0]), Callback)
 
 
 if __name__ == '__main__':
