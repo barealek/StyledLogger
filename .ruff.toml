@@ -1,5 +1,5 @@
 select = ["E", "F", "B"]
-fix-only = true
+fix = true
 
 extend-exclude = ["*/__init__.py"]
 
