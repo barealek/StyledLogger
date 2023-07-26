@@ -1,6 +1,8 @@
 # StyledLogger
 
 ### A simple, yet beautiful logging library for Python 🐍 >= 3.9
+[![Tests](https://github.com/barealek/StyledLogger/actions/workflows/run-tests.yml/badge.svg)](https://github.com/barealek/StyledLogger/actions/workflows/run-tests.yml)
+[![Upload Python Package](https://github.com/barealek/StyledLogger/actions/workflows/pypi-integration.yml/badge.svg)](https://github.com/barealek/StyledLogger/actions/workflows/pypi-integration.yml)
 
 To use, simply install via `pip install styledlogger`
 
