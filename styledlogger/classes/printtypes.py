@@ -1,9 +1,8 @@
 class PrintType:
-    def __init__(self):
-        self.display = None
+    display = "UNKN"
 
     def __hash__(self):
-        return hash((self.display))
+        return hash(self.display)
 
     def __eq__(self, other):
         return self.display == other.display

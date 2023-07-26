@@ -111,10 +111,11 @@ class StyleConfig:
         Style the text according to the style config.
         """
 
-        {
+        _map = {
             "{name}": logger_name,
             "{time}": now().format(self.time_format),
             "{type}": str(print_type.display),
             "{text}": text,
         }
 
+        return ' '.join([_map.get(_w, _w) for _w in self.text_format.split(' ')])
