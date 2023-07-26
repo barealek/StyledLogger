@@ -28,7 +28,8 @@ class Logger:
         self.style_config = style_config or StyleConfig()
         self.callbacks = []
 
-        self.file = open(file, "a+", encoding="utf-8") if isinstance(file, str) else file
+        self.file = open(file, "a+", encoding="utf-8") \
+            if isinstance(file, str) else file
 
     def set_level(self, level: int):
         """
@@ -42,16 +43,16 @@ class Logger:
     def callback(self, name: str, levels: Union[int, tuple[int, ...]]):
         # noinspection PyUnresolvedReferences
         """
-                Decorator to add a callback to the logger.
+            Decorator to add a callback to the logger.
 
-                :param name: The name of the callback
-                :param levels: The levels which the callback will be called upon.
+            :param name: The name of the callback
+            :param levels: The levels which the callback will be called upon.
 
-                The decorated function will receive an instance of
-                `styledlogger.CallbackContext`, with the following attributes:
-                :param name: The name of the logger which activated the callback.
-                :param level: The log level which activated the callback.
-                :param message: The content of the log message which activated the callback.
+            The decorated function will receive an instance of
+            `styledlogger.CallbackContext`, with the following attributes:
+            :param name: The name of the logger which activated the callback.
+            :param level: The log level which activated the callback.
+            :param message: The content of the log message which activated the callback.
                 """
 
         def decorator_function(original_func):
