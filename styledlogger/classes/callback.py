@@ -11,8 +11,8 @@ class Callback:
     :param name:
     The name of the callback. This is used to identify the callback.
 
-    :param activation_level:
-    The level at which the callback will be called. 0 = debug, 1 = info, 2 = warn,
+    :param activation_levels:
+    The levels at which the callback will be called. 0 = debug, 1 = info, 2 = warn,
     3 = error, 4 = fatal. All prints lower than the level will be ignored.
 
     :param callback:
