@@ -14,6 +14,7 @@ class Logger:
     :param name: The name of the logger
     :param file: The path of the file which logs will be written to
     :param level: The log level
+    :param style_config: The style config
     """
 
     def __init__(self,
