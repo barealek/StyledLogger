@@ -44,9 +44,8 @@ class TestStyleConfig(unittest.TestCase):
             error_color="red"
         )
 
-        text = style_config.style_text_uncolored("logger", Warn, "Test message")
-        rn = now().format("YYYY-MM-DD HH:mm")
-        expected_text = f"{rn} logger Test message"
+        style_config.style_text_uncolored("logger", Warn, "Test message")
+        now().format("YYYY-MM-DD HH:mm")
 
 if __name__ == '__main__':
     unittest.main()

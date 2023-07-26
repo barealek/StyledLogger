@@ -1,6 +1,6 @@
 
 import unittest
-from styledlogger import StyledLogger as Logger, CallbackContext
+from styledlogger import StyledLogger as Logger
 from styledlogger.classes.callback import Callback
 
 num = 0

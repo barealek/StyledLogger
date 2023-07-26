@@ -15,7 +15,12 @@ class Logger:
     :param level: The log level
     """
 
-    def __init__(self, name: str, *, file: str = None, level: int = 1, style_config: StyleConfig = None) -> None:
+    def __init__(self,
+                 name: str, *,
+                 file: str = None,
+                 level: int = 1,
+                 style_config: StyleConfig = None
+                 ) -> None:
         self.name = name
         self.level = level
         self.is_muted = False
@@ -31,7 +36,6 @@ class Logger:
         """
         self.level = level
 
-    # Create a decorator, which takes in a name, and adds the decorated function to the logger's callbacks
     # noinspection PyIncorrectDocstring
     def callback(self, name: str, levels: Union[int, tuple[int, ...]]):
         """
@@ -40,8 +44,8 @@ class Logger:
         :param name: The name of the callback
         :param levels: The levels which the callback will be called upon.
 
-        The decorated function will receive an instance of `styledlogger.CallbackContext`,
-        with the following attributes:
+        The decorated function will receive an instance of
+        `styledlogger.CallbackContext`, with the following attributes:
         :param name: The name of the logger which activated the callback.
         :param level: The log level which activated the callback.
         :param message: The content of the log message which activated the callback.

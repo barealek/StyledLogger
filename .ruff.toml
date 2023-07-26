@@ -1,0 +1,6 @@
+select = ["E", "F", "B"]
+fix = true
+
+extend-exclude = ["*/__init__.py"]
+
+ignore = ["E722"]

@@ -74,7 +74,11 @@ class StyleConfig:
         """
         return vars(self)
 
-    def style_text(self, logger_name: str, print_type: Type[PrintType], text: str) -> str:
+    def style_text(self,
+                   logger_name: str,
+                   print_type: Type[PrintType],
+                   text: str
+                   ) -> str:
         """
         Style the text according to the style config.
         """
@@ -107,7 +111,7 @@ class StyleConfig:
         Style the text according to the style config.
         """
 
-        replacemap = {
+        {
             "{name}": logger_name,
             "{time}": now().format(self.time_format),
             "{type}": str(print_type.display),

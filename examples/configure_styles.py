@@ -6,15 +6,19 @@ from styledlogger import StyledLogger
 import requests
 
 from styledlogger import StyleConfig
-# This object can be initialized with your parameters and then fed into the construction of the logger.
+# This object can be initialized with your parameters
+# and then fed into the construction of the logger.
 
 custom_style_config = StyleConfig(
     # You pass keyword arguments to the StyleConfig constructor to configure the logger.
     # Your IntelliSense will show all the configuration options.
-    text_format="%name% - %type% | %msg%",  # Available placeholders are: %time%, %type%, %name% & %msg%
-    time_format="DD/MM hh:mm:ss",  # The time format used in the log message. Check the Arrow docs for more info.
+    text_format="%name% - %type% | %msg%",  # Available placeholders are:
+                                            # %time%, %type%, %name% & %msg%
+    time_format="DD/MM hh:mm:ss",  # The time format used in the log message.
+                                   # Check the Arrow docs for more info.
     name_color="red"
-    # The rest are pretty much just colors. Check out classes/printcolors.py for all the available colors.
+    # The rest are pretty much just colors.
+    # Check out classes/printcolors.py for all the available colors.
 )
 
 logger = StyledLogger("requests", style_config=custom_style_config)
