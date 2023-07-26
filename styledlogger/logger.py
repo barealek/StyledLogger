@@ -3,8 +3,7 @@ from .classes.styleconfig import StyleConfig
 from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, System
 from .classes.callback import Callback as LoggerCallback
 
-from typing import Type, Union
-from io import TextIOWrapper
+from typing import Type, Union, IO
 
 
 class Logger:
@@ -19,7 +18,7 @@ class Logger:
 
     def __init__(self,
                  name: str, *,
-                 file: Union[str, TextIOWrapper, None] = None,
+                 file: Union[str, IO[str], None] = None,
                  level: int = 1,
                  style_config: StyleConfig = None
                  ) -> None:
