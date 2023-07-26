@@ -1,0 +1,5 @@
+select = ["E", "F", "B"]
+fix-only = true
+
+[per-file-ignores]
+"*/__init__.py" = ["E402"]
