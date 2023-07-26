@@ -4,6 +4,7 @@ from .classes.printtypes import PrintType, Debug, Info, Warn, Error, Fatal, Syst
 from .classes.callback import Callback as LoggerCallback
 
 from typing import Type, Union
+from io import TextIOWrapper
 
 
 class Logger:
@@ -17,7 +18,7 @@ class Logger:
 
     def __init__(self,
                  name: str, *,
-                 file: str = None,
+                 file: Union[str, TextIOWrapper, None] = None,
                  level: int = 1,
                  style_config: StyleConfig = None
                  ) -> None:
@@ -25,8 +26,9 @@ class Logger:
         self.level = level
         self.is_muted = False
         self.style_config = style_config or StyleConfig()
-        self.file_path = file
         self.callbacks = []
+
+        self.file = open(file, "a+", encoding="utf-8") if isinstance(file, str) else file
 
     def set_level(self, level: int):
         """
@@ -119,7 +121,6 @@ class Logger:
         """
         self._process_callbacks(message, System)
         return self._log(message, System)
-        
 
     def _process_callbacks(self, message, print_type):
         for callback in self.callbacks:
@@ -136,7 +137,7 @@ class Logger:
         if self.is_muted:
             return False
 
-        if self.file_path:
+        if self.file:
             self._write_to_file(message, print_type)
 
         print(self.style_config.style_text(self.name, print_type, message))
@@ -161,10 +162,10 @@ class Logger:
         self.is_muted = False
 
     def _write_to_file(self, message, print_type: Type[PrintType]):
-        with open(self.file_path, "a+", encoding="utf-8") as file:
-                file.write(
-                    self.style_config.style_text_uncolored(
-                        self.name, print_type, message
-                    )
-                    + "\n"
-                )
+        self.file.write(
+            self.style_config.style_text_uncolored(
+                self.name, print_type, message
+            )
+            + "\n"
+        )
+        self.file.flush()
