@@ -7,7 +7,8 @@ import requests
 
 logger = StyledLogger("requests")
 # By default, the level will be set to 1, which translates to INFO.
-# All prints with a level equal to or higher than the set level will be shown in the console.
+# All prints with a level equal to or higher than the
+# set level will be shown in the console.
 
 logger.set_level(2)
 # 2 is the logging level for WARNS.
